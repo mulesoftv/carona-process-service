@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="1f3f9997-6c43-41f2-b99c-122d2478f9c1" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="carona-system-serviceFlow" doc:id="d45dd831-80f6-4886-81c2-629fd241960f" >
+		<http:listener doc:name="Listener" doc:id="44186da0-6c92-47a4-924c-eff68334ee70" config-ref="HTTP_Listener_config" path="/carona"/>
+		<set-payload value='#["There are 500 active cases"]' doc:name="Set Payload" doc:id="762d932c-c9cd-46d9-b008-125084ada5b3" />
+		<logger level="INFO" doc:name="Logger" doc:id="131e5058-5594-4d08-9b2e-aa7deaadff7f" message="#[payload]"/>
+	</flow>
+</mule>
