@@ -11,5 +11,6 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 		<http:listener doc:name="Listener" doc:id="44186da0-6c92-47a4-924c-eff68334ee70" config-ref="HTTP_Listener_config" path="/carona"/>
 		<set-payload value='#["There are 500 active cases"]' doc:name="Set Payload" doc:id="762d932c-c9cd-46d9-b008-125084ada5b3" />
 		<logger level="INFO" doc:name="Logger" doc:id="131e5058-5594-4d08-9b2e-aa7deaadff7f" message="#[payload]"/>
+		<set-payload value='#["The new changes"]' doc:name="Set Payload" doc:id="1c6056a8-9739-4a79-ba8a-b790c45f0eb5" />
 	</flow>
 </mule>
