@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+	<flow name="polling-hitFlow" doc:id="85fe3f14-93e3-48f6-ac25-d3d3d08ad85c" >
+		<scheduler doc:name="Scheduler" doc:id="931958c8-2681-45f6-bf6f-1fda09306fc9" >
+			<scheduling-strategy >
+				<fixed-frequency frequency="2" timeUnit="MINUTES"/>
+			</scheduling-strategy>
+		</scheduler>
+		<logger level="INFO" doc:name="Logger" doc:id="856f41b1-3c13-4c79-a00d-88ce9637ee94" message="${flowstop}"/>
+		<choice doc:name="Choice" doc:id="93f32eb1-3964-4c51-8efe-34369c26726a" >
+			<when expression='#[%dw 2.0&#10;output application/json&#10;---&#10;p("flowstop") == "on"]'>
+				<logger level="INFO" doc:name="Logger" doc:id="26fd642d-0aee-49c4-9637-1d97e77615b5" message="the flow started"/>
+			</when>
+			<otherwise >
+				<logger level="INFO" doc:name="Logger" doc:id="8ff576bd-08d6-4da5-b269-16da4d4e8c92" message="flow is off , to change modify the properties in runtime manager"/>
+			</otherwise>
+		</choice>
+	</flow>
+</mule>
